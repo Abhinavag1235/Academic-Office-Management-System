@@ -4,12 +4,13 @@
 <html>
 
 <head>
-    <title>Hod Home</title>
+    <title>HOD Home</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="res/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body>
@@ -23,7 +24,16 @@
         <div class="col-md-10 col-sm-12"></div>
     </div>
 
-    
+    <div class="col-md-12" align="center" style="padding-top: 80px">
+        <a href="CourseRegistration.jsp">
+            <button class="w3-button w3-bar-block w3-border"><b>Grade Upload</b></button>
+        </a>
+    </div>
+    <div class="col-md-12" align="center" style="padding-top: 80px">
+        <a href="GpaView.jsp">
+            <button class="w3-button w3-bar-block w3-border"><b>Grade Update</b></button>
+        </a>
+    </div>
 
     <!--Footer-->
     <div class="footer">

@@ -31,20 +31,22 @@ public class LoginServlet extends HttpServlet {
             // Execute SQL query
             Statement stmt = conn.createStatement();
             Statement stmt1 = conn.createStatement();
-            String sql,sql1;
+            Statement stmt2 = conn.createStatement();
+
+            String sql,sql1,sql2;
+            ResultSet rs,rs1,rs2;
+
             sql = "SELECT * FROM users";
-            ResultSet rs = stmt.executeQuery(sql);
+            rs = stmt.executeQuery(sql);
 
             sql1 = "SELECT * FROM student WHERE sid='"+user+"'";
-            ResultSet rs1 = stmt1.executeQuery(sql1);
+            rs1 = stmt1.executeQuery(sql1);
             rs1.next();
 
             String id,name=null,username=null,password=null,branch=null,cursem=null;
             int level;
 
-            branch = rs1.getString("branch");
-            cursem = rs1.getString("cursem");
-            name = rs1.getString("sname");
+            
             
             // Extract data from result set
             while (rs.next()) {
@@ -56,6 +58,16 @@ public class LoginServlet extends HttpServlet {
 
 
                 if (username.equals(user) && password.equals(pass) && level == 1) {
+
+                    branch = rs1.getString("branch");
+                    cursem = rs1.getString("cursem");
+                    name = rs1.getString("sname");
+
+                    sql2 = "SELECT * FROM course WHERE branch='"+branch+"'";
+                    rs2 = stmt2.executeQuery(sql2);
+                    rs2.next();
+                    
+
                     session.setAttribute("userName", user);
                     session.setAttribute("fullName", name);
                     session.setAttribute("branch", branch);
@@ -64,7 +76,7 @@ public class LoginServlet extends HttpServlet {
                 }
                 else if (username.equals(user) && password.equals(pass) && level == 2) {
                     session.setAttribute("userName", user);
-                    response.sendRedirect("HodHome.jsp");
+                    response.sendRedirect("FacultyHome.jsp");
                 }
             }
             if (username!=user && password!=pass){
