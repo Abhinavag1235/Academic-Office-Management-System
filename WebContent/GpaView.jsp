@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,65 +15,95 @@
 </head>
 
 <body>
-
-    <!--AOMS LOGO or TEXT-->
-    <div class="row col-md-12">
-        <div class="col-md-2 col-sm-12" align="center" style="font-family: verdana;color: #17202A;">
-            <h3 style="margin-top: 40px;font-weight:500">A O M S</h3>
-
+        <div class="container">
+            <h3><b><br>SGPA / CGPA View</b></h4><br>
         </div>
-        <div class="col-md-10 col-sm-12"></div>
-    </div>
+        
+        <%
 
-<br><br><br><br>
-    <div class="container">
+                    
+                    String RollNo="16ucs004",branch="cse";
+                    int semster=5;
+                    String course_id[]= new String[15];
+                    int credits[]=new int[15];
+                    int grade_point[]=new int[15];
+                    float total_credits=0;
+                    int i=0;
+                    double Sgpa=0.0;
 
-        <p><h5>Name : Student Name</h5></p>
-        <p><h5>Enrollment ID : 16ucs012</h5></p>
-  <h3>Grade Points</h3>
-  <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            --> 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Course Code</th>
-        <th>Course Title </th>
-        <th>Course Credit </th>
-        <th>Grade</th>
-        <th>Type of Course</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>C1</td>
-            <td>3</td>
-            <td>A</td>
-            <td>Core</td>
-        </tr>
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/aoms","isd","qwerty" );
 
-        <tr>
-            <td>2</td>
-            <td>C2</td>
-            <td>4</td>
-            <td>A</td>
-            <td>Core</td>
-        </tr>
-        <tr></tr>
-        <tr>
-            <td>SGPA : 8</td>
-            <td>CGPA : 9</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-  </table>
+                        Statement st=(Statement) conn.createStatement();
+                        String sql="Select * from course c,registration r Where c.sem="+semster+" AND c.branch='"+branch+"' AND c.cid=r.cid";
 
-</div>
+                        ResultSet rs= st.executeQuery(sql);
 
-    <div class="col-md-12" style="padding-top: 40px;" align="center">
-        <button type="button" class="btn btn-danger">Generate Transcript</button>
-    </div>
+                        while(rs.next()) {
+                          course_id[i]= rs.getString("cid");
+                          credits[i]=rs.getInt("credits");
+                          total_credits +=credits[i];
+                          i++;
+                        }
 
+                        float credit_score=0;
+
+                        for(int j=0;j<course_id.length;j++) {
+                        sql="Select gradePoint from grade where sid='"+RollNo+"' AND cid='"+course_id[j]+"'";
+                        ResultSet rp= st.executeQuery(sql);
+                        rp.next();
+                            grade_point[j]=rp.getInt("gradePoint");
+                            credit_score +=(grade_point[j]*credits[j]);
+                            Sgpa=credit_score/total_credits;
+                            
+                            if(j==i-1){
+                                String sq="Insert into marksheet(sid,sem,sgpa,semCredit) values ('"+RollNo+"',"+semster+","+Sgpa+","+total_credits+")";
+                                st.executeUpdate(sq);
+
+
+                                int k=0;
+                                int semCredit[]=new int[15];
+                                float sgpa[]=new float[15];
+                                float total = 0;
+
+                                String sq1="SELECT sgpa,semCredit FROM marksheet WHERE sid='"+RollNo+"'";
+                                ResultSet rk= st.executeQuery(sq1);
+                                while(rk.next()) {
+                                      sgpa[k]= rk.getFloat("sgpa");
+
+                                      
+                                      semCredit[k]=rk.getInt("semCredit");
+                                      total +=semCredit[k];	
+                                      %>
+                                      <%=sgpa[k]%>
+                                      <%
+                                      k++;
+                                }
+                                credit_score=0;
+                                
+                                for(int l=0;l<k;l++) {
+                                    credit_score +=(sgpa[l]*semCredit[l]);
+                                }
+                                double Cgpa=credit_score/total;
+
+                                %>
+                                <%=Cgpa%>
+                                <%
+
+                                String sq2="UPDATE marksheet SET cgpa="+Cgpa+" WHERE sid='"+RollNo+"'";
+                                st.executeUpdate(sq2);
+                                
+                            }
+                        }
+
+                    }
+                    catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                       
+        %>
+
+        
 </body>
 </html>

@@ -20,10 +20,7 @@
     <% String nam=(String)session.getAttribute("name"); %>
     <%String branch = session.getAttribute("branch").toString(); %>
     <%int cursem = Integer.parseInt(session.getAttribute("cursem").toString());
-      int nextsem = cursem +1; %>
-
-    
-
+      int nextsem = cursem +1; %> 
     
     
     <div class="container">
