@@ -30,23 +30,41 @@ public class LoginServlet extends HttpServlet {
 
             // Execute SQL query
             Statement stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT id, name, username, password FROM users";
+            Statement stmt1 = conn.createStatement();
+            String sql,sql1;
+            sql = "SELECT * FROM users";
             ResultSet rs = stmt.executeQuery(sql);
 
+            sql1 = "SELECT * FROM student WHERE sid='"+user+"'";
+            ResultSet rs1 = stmt1.executeQuery(sql1);
+            rs1.next();
 
-            String id,name,username=null,password=null;
+            String id,name=null,username=null,password=null,branch=null,cursem=null;
+            int level;
+
+            branch = rs1.getString("branch");
+            cursem = rs1.getString("cursem");
+            name = rs1.getString("sname");
+            
             // Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
                 id = rs.getString("id");
-                name = rs.getString("name");
                 username = rs.getString("username");
                 password = rs.getString("password");
+                level = rs.getInt("level");
 
-                if (username.equals(user) && password.equals(pass)) {
+
+                if (username.equals(user) && password.equals(pass) && level == 1) {
                     session.setAttribute("userName", user);
-                    response.sendRedirect("HomePage.jsp");
+                    session.setAttribute("fullName", name);
+                    session.setAttribute("branch", branch);
+                    session.setAttribute("cursem", cursem);
+                    response.sendRedirect("StudentHome.jsp");
+                }
+                else if (username.equals(user) && password.equals(pass) && level == 2) {
+                    session.setAttribute("userName", user);
+                    response.sendRedirect("HodHome.jsp");
                 }
             }
             if (username!=user && password!=pass){

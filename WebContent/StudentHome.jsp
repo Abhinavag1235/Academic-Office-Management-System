@@ -15,6 +15,17 @@
 
 <body>
 
+    <%  String rollNo=(String)session.getAttribute("userName"); %> 
+    <%  session.setAttribute("rollNo", rollNo); %>
+    <%  String name=(String)session.getAttribute("fullName"); %> 
+    <%  session.setAttribute("name", name); %>
+    <%  String branch=(String)session.getAttribute("branch"); %> 
+    <%  session.setAttribute("branch", branch); %>
+    <%  String cursem=(String)session.getAttribute("cursem"); %> 
+    <%  session.setAttribute("cursem", cursem); %>
+    
+    
+
     <!--AOMS LOGO or TEXT-->
     <div class="row col-md-12">
         <div class="col-md-2 col-sm-12" align="center" style="font-family: verdana;color: #17202A;">
@@ -24,22 +35,24 @@
         <div class="col-md-10 col-sm-12"></div>
     </div>
 
-    <div class="col-md-12" align="center" style="padding-top: 40px">
-        <a href="CourseReg.jsp">
-            <button class="w3-button w3-bar-block w3-border">Course Registration</button>
+    <div class="col-md-12" align="center" style="padding-top: 80px">
+        <a href="CourseRegistration.jsp">
+            <button class="w3-button w3-bar-block w3-border"><b>Course Registration</b></button>
         </a>
     </div>
-    <div class="col-md-12" align="center" style="padding-top: 40px">
-        <div class="w3-dropdown-hover">
-          <button class="w3-button">SGPA / CGPA View</button>
-          <div class="w3-dropdown-content w3-bar-block w3-border">
-            <a href="GpaView.jsp" class="w3-bar-item w3-button">SEM 1</a>
-            <a href="#" class="w3-bar-item w3-button">SEM 2</a>
-            <a href="#" class="w3-bar-item w3-button">SEM 3</a>
-          </div>
-        </div>
+    <div class="col-md-12" align="center" style="padding-top: 80px">
+        <a href="GpaView.jsp">
+            <button class="w3-button w3-bar-block w3-border"><b>SGPA / CGPA View</b></button>
+        </a>
     </div>
-    
+
+    <!--Footer-->
+    <div class="footer">
+        <p>Copyright © 2018 Academic Office Management System. All Rights Reserved.</p>
+    </div>
+
+
 
 </body>
+
 </html>

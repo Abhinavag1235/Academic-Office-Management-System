@@ -12,4 +12,14 @@
 	  	<url-pattern>/LoginServlet</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+	  	<servlet-name>StudentDetails</servlet-name>
+	  	<servlet-class>StudentDetails</servlet-class>
+	</servlet>
+	    
+	<servlet-mapping>
+	  	<servlet-name>StudentDetails</servlet-name>
+	  	<url-pattern>/StudentDetails</url-pattern>
+	</servlet-mapping>
+
 </web-app>
