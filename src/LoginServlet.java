@@ -13,10 +13,10 @@ public class LoginServlet extends HttpServlet {
     static final String PASS = "qwerty";
 
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// Get user input
+        // Get user input
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         HttpSession session = request.getSession(true);
@@ -33,21 +33,21 @@ public class LoginServlet extends HttpServlet {
             Statement stmt1 = conn.createStatement();
             Statement stmt2 = conn.createStatement();
 
-            String sql,sql1,sql2;
-            ResultSet rs,rs1,rs2;
+            String sql, sql1, sql2;
+            ResultSet rs, rs1, rs2;
 
             sql = "SELECT * FROM users";
             rs = stmt.executeQuery(sql);
 
-            sql1 = "SELECT * FROM student WHERE sid='"+user+"'";
+            sql1 = "SELECT * FROM student WHERE sid='" + user + "'";
             rs1 = stmt1.executeQuery(sql1);
             rs1.next();
 
-            String id,name=null,username=null,password=null,branch=null,cursem=null;
+            String id, name = null, username = null, password = null, branch = null, cursem = null;
             int level;
 
-            
-            
+
+
             // Extract data from result set
             while (rs.next()) {
                 //Retrieve by column name
@@ -63,26 +63,25 @@ public class LoginServlet extends HttpServlet {
                     cursem = rs1.getString("cursem");
                     name = rs1.getString("sname");
 
-                    sql2 = "SELECT * FROM course WHERE branch='"+branch+"'";
+                    sql2 = "SELECT * FROM course WHERE branch='" + branch + "'";
                     rs2 = stmt2.executeQuery(sql2);
                     rs2.next();
-                    
+
 
                     session.setAttribute("userName", user);
                     session.setAttribute("fullName", name);
                     session.setAttribute("branch", branch);
                     session.setAttribute("cursem", cursem);
                     response.sendRedirect("StudentHome.jsp");
-                }
-                else if (username.equals(user) && password.equals(pass) && level == 2) {
+                } else if (username.equals(user) && password.equals(pass) && level == 2) {
                     session.setAttribute("userName", user);
                     response.sendRedirect("FacultyHome.jsp");
                 }
             }
-            if (username!=user && password!=pass){
-                	session.setAttribute("errorMessage","Invalid credentials");
-                	response.sendRedirect("ErrorPage.jsp");	
-                }
+            if (username != user && password != pass) {
+                session.setAttribute("errorMessage", "Invalid credentials");
+                response.sendRedirect("ErrorPage.jsp");
+            }
             rs.close();
             stmt.close();
             conn.close();

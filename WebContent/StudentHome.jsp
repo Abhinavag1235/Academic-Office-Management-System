@@ -15,16 +15,16 @@
 
 <body>
 
-    <%  String rollNo=(String)session.getAttribute("userName"); %> 
+    <%  String rollNo=(String)session.getAttribute("userName"); %>
     <%  session.setAttribute("rollNo", rollNo); %>
-    <%  String name=(String)session.getAttribute("fullName"); %> 
+    <%  String name=(String)session.getAttribute("fullName"); %>
     <%  session.setAttribute("name", name); %>
-    <%  String branch=(String)session.getAttribute("branch"); %> 
+    <%  String branch=(String)session.getAttribute("branch"); %>
     <%  session.setAttribute("branch", branch); %>
-    <%  String cursem=(String)session.getAttribute("cursem"); %> 
+    <%  String cursem=(String)session.getAttribute("cursem"); %>
     <%  session.setAttribute("cursem", cursem); %>
-    
-    
+
+
 
     <!--AOMS LOGO or TEXT-->
     <div class="row col-md-12">
