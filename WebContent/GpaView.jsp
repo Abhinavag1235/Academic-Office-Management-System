@@ -127,7 +127,7 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading"><b>Core Courses</b></div>
+                <div class="panel-heading"><b>Semester <%=cursem%> Courses</b></div>
                 <div class="panel-body">
 
 
@@ -201,7 +201,11 @@
                     </div>
             </div>
 
+            <a href="transcript"><button type="button" class="btn btn-primary">Download Transcript</button></a>  
+            <br><br><br><br>
         </div>
+
+        
 
 </body>
 

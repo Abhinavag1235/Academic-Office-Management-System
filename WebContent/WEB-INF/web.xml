@@ -13,13 +13,44 @@
 	</servlet-mapping>
 
 	<servlet>
-	  	<servlet-name>StudentDetails</servlet-name>
-	  	<servlet-class>StudentDetails</servlet-class>
+	  	<servlet-name>transcript</servlet-name>
+	  	<servlet-class>transcript</servlet-class>
 	</servlet>
 	    
 	<servlet-mapping>
-	  	<servlet-name>StudentDetails</servlet-name>
-	  	<url-pattern>/StudentDetails</url-pattern>
+	  	<servlet-name>transcript</servlet-name>
+	  	<url-pattern>/transcript</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+	  	<servlet-name>FileUploadHandler</servlet-name>
+	  	<servlet-class>FileUploadHandler</servlet-class>
+	</servlet>
+	    
+	<servlet-mapping>
+	  	<servlet-name>FileUploadHandler</servlet-name>
+	  	<url-pattern>/FileUploadHandler</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+	  	<servlet-name>CourseRegDetails</servlet-name>
+	  	<servlet-class>CourseRegDetails</servlet-class>
+	</servlet>
+	    
+	<servlet-mapping>
+	  	<servlet-name>CourseRegDetails</servlet-name>
+	  	<url-pattern>/CourseRegDetails</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+	  	<servlet-name>FileUpdate</servlet-name>
+	  	<servlet-class>FileUpdate</servlet-class>
+	</servlet>
+	    
+	<servlet-mapping>
+	  	<servlet-name>FileUpdate</servlet-name>
+	  	<url-pattern>/FileUpdate</url-pattern>
 	</servlet-mapping>
 
 </web-app>
+

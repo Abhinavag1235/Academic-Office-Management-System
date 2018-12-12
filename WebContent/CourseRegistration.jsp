@@ -66,13 +66,13 @@
 
                     <div class="row col-md-12">
                         <div class="col-md-6">
-                            <form class="form-horizontal" action="/action_page.php">
+                            <form class="form-horizontal" action="CourseRegDetails" method="post">
                                 <div class="form-group">
                                     <div for="disabledInput" class="col-sm-2 control-label">
                                         <%=rs.getString(1)%>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="disabledInput" type="text" value=<%=rs.getString(2)%> disabled>
+                                        <input class="form-control" name="co_course" id="disabledInput" type="text" value=<%=rs.getString(2)%> disabled>
                                     </div>
                                 </div>
                             </form>
@@ -107,13 +107,13 @@
 
                     <div class="row col-md-12">
                         <div class="col-md-4">
-                            <form class="form-horizontal" action="/action_page.php">
+                            <form class="form-horizontal" action="CourseRegDetails" method="post">
                                 <div class="form-group">
                                     <div for="disabledInput" class="col-sm-2 control-label">
                                         <%=rs1.getString(1)%>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="disabledInput" type="text" value=<%=rs1.getString(2)%> disabled>
+                                        <input class="form-control" name="pe_course" id="disabledInput" type="text" value=<%=rs1.getString(2)%> disabled>
                                     </div>
                                 </div>
                             </form>
@@ -122,17 +122,21 @@
                             <%=rs1.getString(4)%>
                         </div>
                         <div class="col-md-4" align="center">
-                            <select name="cars">
+                            <form class="form-horizontal" action="CourseRegDetails" method="post">
+                                <div class="form-group">
+                                    <select name="cars">
 
-                                <% for(int i=1;i<=pe_count;i++){ %>
+                                        <% for(int i=1;i<=pe_count;i++){ %>
 
-                                <option value=<%=i%>>
-                                    <%=i%>
-                                </option>
+                                        <option value=<%=i%>>
+                                            <%=i%>
+                                        </option>
 
-                                <% } %>
-                                
-                            </select>
+                                        <% } %>
+                                        
+                                    </select>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
@@ -146,13 +150,17 @@
 
                 </div>
                 <div class="col-md-1" align="center">
-                    <button type="submit" class="btn btn-danger" style="width: 100px">Submit</button>
+                    <form action="CourseRegDetails" method="post">
+                        <button type="submit" class="btn btn-danger" style="width: 100px">Submit</button>
+                    </form>
                 </div>
                 <div class="col-md-2">
 
                 </div>
                 <div class="col-md-1" align="center">
-                    <button type="submit" class="btn btn-danger" style="width: 100px">Lock</button>
+                    <form action="CourseRegDetails" method="post">
+                        <button type="submit" onclick="submit()" class="btn btn-danger" style="width: 100px">Lock</button>
+                    </form>
                 </div>
                 <div class="col-md-4">
 
@@ -163,6 +171,14 @@
 
     <br><br>
 
+<script>
+function submit() {
+  
+}
+</script>
+
 </body>
+
+
 
 </html>

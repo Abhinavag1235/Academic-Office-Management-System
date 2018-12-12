@@ -25,12 +25,12 @@
     </div>
 
     <div class="col-md-12" align="center" style="padding-top: 80px">
-        <a href="CourseRegistration.jsp">
+        <a href="upload.jsp">
             <button class="w3-button w3-bar-block w3-border"><b>Grade Upload</b></button>
         </a>
     </div>
     <div class="col-md-12" align="center" style="padding-top: 80px">
-        <a href="GpaView.jsp">
+        <a href="update.jsp">
             <button class="w3-button w3-bar-block w3-border"><b>Grade Update</b></button>
         </a>
     </div>
